@@ -7,25 +7,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.asus.badgetest.Main2Activity">
-
-    <TextView android:text="Hello World2!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:onClick="addBadge"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    tools:context=".Main2Activity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_above="@+id/button"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/start"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/start"
+        android:onClick="start"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:id="@+id/stop"
+        android:onClick="stop"
+        android:layout_below="@+id/start"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

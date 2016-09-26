@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "928205242871",
+    "firebase_url": "https://project-7980030812974915676.firebaseio.com",
+    "project_id": "project-7980030812974915676",
+    "storage_bucket": "project-7980030812974915676.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928205242871:android:837a94ac4400dcd2",
+        "android_client_info": {
+          "package_name": "com.asus.badgetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928205242871-7ur01mnuepg0hng8r1dbqenk2m72ipfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFAumwN6wHWr0jA87mxsgaxHfOKBaAel0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

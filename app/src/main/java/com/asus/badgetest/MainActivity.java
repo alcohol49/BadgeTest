@@ -2,21 +2,18 @@ package com.asus.badgetest;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.database.ContentObserver;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.List;
+//import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "badgetest";
 
     int mCount = 0;
     int mCountVip = 0;
@@ -26,46 +23,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("mingchun", Build.DEVICE);
+        Log.d(TAG, Build.DEVICE);
+
     }
 
     public void addBadge(View view) {
         sendBadge(this, ++mCount, mCountVip);
 
         TextView mTv = (TextView)findViewById(R.id.textView);
-        mTv.setText(String.valueOf(mCount));
+        mTv.setText(mCount + " | " + mCountVip);
+    }
+
+    public void addVip(View view) {
+        sendBadge(this, mCount, ++mCountVip);
+
+        TextView mTv = (TextView)findViewById(R.id.textView);
+        mTv.setText(mCount + " | " + mCountVip);
+    }
+
+    public void clearBadge(View view) {
+        mCount = 0;
+        mCountVip = 0;
+        sendBadge(this, mCount, mCountVip);
+
+        TextView mTv = (TextView)findViewById(R.id.textView);
+        mTv.setText(mCount + " | " + mCountVip);
     }
 
     public void sendBadge(Context context, int count, int countVip) {
-        Log.d("mingchun", "sendBadge" +
-                " pkg = " + getComponentName().getPackageName() +
-                " cls = " + getComponentName().getClassName() +
-                " count = " + count +
-                " vip = " + countVip);
 
-//        String launcherClassName = getLauncherClassName(context);
-//        if (launcherClassName == null) { return; }
+        String pkg = getComponentName().getPackageName();
+        String cls = getComponentName().getClassName();
+
+        Log.d(TAG, "sendBadge" + " pkg = " + pkg + " cls = " + cls + " count = " + count + " vip = " + countVip);
 
         Intent intent = new Intent("android.intent.action.BADGE_COUNT_UPDATE");
         intent.putExtra("badge_count", count);
         intent.putExtra("badge_vip_count", countVip);
-        intent.putExtra("badge_count_package_name", getComponentName().getPackageName());
-        intent.putExtra("badge_count_class_name", getComponentName().getClassName());
+        intent.putExtra("badge_count_package_name", pkg);
+        intent.putExtra("badge_count_class_name", cls);
         context.sendBroadcast(intent);
     }
 
-    public static String getLauncherClassName(Context context) {
-        PackageManager pm = context.getPackageManager();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent, 0);
-        for (ResolveInfo resolveInfo : resolveInfos) {
-            String pkgName = resolveInfo.activityInfo.applicationInfo.packageName;
-            if(pkgName.equalsIgnoreCase(context.getPackageName())) {
-                String className = resolveInfo.activityInfo.name;
-                return className;
-            }
-        }
-        return null;
+    public void auto(View view) {
+        startActivity(new Intent(this, Main2Activity.class));
     }
+
 }
